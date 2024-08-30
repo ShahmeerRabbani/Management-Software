@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from '../Components/Navbar/Navbar'
+import Sidebar from '../Components/Sidebar/Sidebar'
+import DataTable from '../Components/Table/Table'
 
 const dashboard = () => {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className='App'>
+
     </div>
   )
 }

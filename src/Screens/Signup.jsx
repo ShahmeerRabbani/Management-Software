@@ -50,8 +50,6 @@ const SignUpPage = () => {
        }
   }
 
-  console.log(userAuth)
-
   return (
     <div className='SignUpPage'>
       <div className='Seminar-image'>
