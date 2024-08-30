@@ -17,7 +17,7 @@ const LoginPage = () => {
       alert('Login Successfully..')
       navigate('/student/studentList')
     })
-    .then((err) => alert(err))
+    .then((err) => console.log(err))
   }
 
 
