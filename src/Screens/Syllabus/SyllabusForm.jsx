@@ -5,6 +5,7 @@ import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../../Components/FirebaseConfig/FirebaseConfig'
 import { useNavigate } from 'react-router-dom'
 import InputFrom from '../../Components/Input/InputForm'
+import { MdOutlineUploadFile } from 'react-icons/md'
 
 const SyllabusForm = () => {
 
@@ -20,15 +21,20 @@ const SyllabusForm = () => {
 
   const handleSyllabus =async (e) => {
     e.preventDefault();
-    try {
-      const syllabusAndClass =await addDoc(collection(db, 'syllabus&Class'), syllabusObj)
-      .then((res) => {
-        alert('Syllabus add in list')
-        navigate('/syllabus/syllabusList')
-      })
-      .catch((err) => console.log(err))
-    } catch (error) {
-      console.log('error', error)
+    if(syllabusAdd.trim() === '' || syllabusClass.trim() === ''){
+      alert('Please Fill all inputs..')
+    }
+    else{
+      try {
+        const syllabusAndClass =await addDoc(collection(db, 'syllabus&Class'), syllabusObj)
+        .then((res) => {
+          alert('Syllabus add in list')
+          navigate('/syllabus/syllabusList')
+        })
+        .catch((err) => console.log(err))
+      } catch (error) {
+        console.log('error', error)
+      }
     }
   }
 
@@ -43,7 +49,7 @@ const SyllabusForm = () => {
    <InputFrom onchange = {(e) => setSyllabusAdd(e.target.value)} label='Subject Name:' placeholder='Enter your subject name' type='text'/>
    <InputFrom onchange = {(e) => setSyllabusClass(e.target.value)} label='Class:' placeholder='Enter your class' type='number'/>
 
-       <button className='submit_btn'>Upload PDF</button>
+       <button className='submit_btn'> <MdOutlineUploadFile size={24}/> Upload PDF</button>
        <button className='submit_btn' onClick={handleSyllabus}>Add</button>
    </div>
    </form>

@@ -33,7 +33,7 @@ const StudentRegistration = () => {
   const handleSubmitRegister = async (e) => {
     e.preventDefault();
     
-    if(firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || room.trim() === 0){
+    if(firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || room.trim() === 0 || radio === ''){
       alert('Please fill all value')
     }
      else{

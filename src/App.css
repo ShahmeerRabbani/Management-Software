@@ -144,6 +144,9 @@ height: 40px;
 color: #fff;
 font-weight: 600;
 cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .add_btn_parent{

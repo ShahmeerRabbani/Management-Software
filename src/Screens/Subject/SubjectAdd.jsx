@@ -26,18 +26,22 @@ const SubjectAdd = () => {
 
   const handleSubject = async (e) => {
     e.preventDefault();
-
-    try {
-      const subjectClass = await addDoc(
-        collection(db, "subject&class"),
-        subjectObj
-      ).then((res) => {
-        console.log(res);
-        alert("Subject Add in list");
-        navigate("/subject/subjectList");
-      });
-    } catch (error) {
-      console.log("error", error);
+    if(subjectName.trim() === '' || classRoom.trim() === '' || select === ''){
+      alert('Please fill all the fields');
+    }
+    else{ 
+      try {
+        const subjectClass = await addDoc(
+          collection(db, "subject&class"),
+          subjectObj
+        ).then((res) => {
+          console.log(res);
+          alert("Subject Add in list");
+          navigate("/subject/subjectList");
+        });
+      } catch (error) {
+        console.log("error", error);
+      }
     }
   };
 

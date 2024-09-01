@@ -13,8 +13,8 @@ const ClassForm = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState(0)
-  const [birth, setBirth] = useState(0)
+  const [phone, setPhone] = useState()
+  const [birth, setBirth] = useState()
   const [qualification, setQualification] = useState('')
   const [radio, setRadio] = useState('')
 
@@ -34,20 +34,25 @@ const ClassForm = () => {
     setRadio(e.target.value)
   }
 
-
   const handleCLassAdmission =async (e) => {
     e.preventDefault();
 
-    try {
-      const classAdmission =await addDoc(collection(db, "classAdmission"), classObj)
-      .then((res) => {
-        console.log(res)
-        alert('Admission Add in list')
-        navigate('/class/classList')
-      })
-    } catch (error) {
-      console.log('error', error)
-    }
+   if(firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || radio === '' || qualification.trim === '' || birth === 0 || phone === 0){
+    alert('Please fill all the fields')
+   }
+   else{
+     try {
+       const classAdmission =await addDoc(collection(db, "classAdmission"), classObj)
+       .then((res) => {
+         console.log(res)
+         alert('Admission Add in list')
+         navigate('/class/classList')
+       })
+     } catch (error) {
+       console.log('error', error)
+     }
+   }
+
   }
 
 

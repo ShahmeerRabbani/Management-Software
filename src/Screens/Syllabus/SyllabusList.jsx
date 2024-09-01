@@ -41,7 +41,7 @@ const SyllabusList = () => {
    <div className='Content'>
     <div className='Content_Data'>
    <p className='Form-heading'>Syllabus List</p>
-   <p className="add_btn_parent"><Button variant="contained" className="add_btn" onClick={() => navigate('/syllabus/syllabusAdd')}>Add</Button></p>
+   <p className="add_btn_parent"><Button variant="contained" className="add_btn" onClick={() => navigate('/syllabus/syllabusForm')}>Add</Button></p>
    <div className="content_table">
     <DataTable dataRow={syllabusData} dataColumn={columns}/>
    </div>
