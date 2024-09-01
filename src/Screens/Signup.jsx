@@ -35,6 +35,7 @@ const SignUpPage = () => {
           const userNames =await addDoc(collection(db, 'userName'),userInfo)
           .then((response) => console.log("user add in data base", response))
           .catch((error) => console.log('error in database', error))
+          localStorage.setItem('user', JSON.stringify(userInfo));
          } catch (error) {
           console.log('catch error')
          }

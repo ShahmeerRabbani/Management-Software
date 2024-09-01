@@ -15,7 +15,7 @@ const LoginPage = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((res)=> {
       alert('Login Successfully..')
-      navigate('/student/studentList')
+      navigate('/student/studentList', {replace: true})
     })
     .then((err) => console.log(err))
   }

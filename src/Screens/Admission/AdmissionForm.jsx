@@ -28,25 +28,29 @@ const AdmissionForm = () => {
     qualification,
     radio
   }
-
+  
   const handleRadioValue = (e) => {
     setRadio(e.target.value)
   }
-
-
+  
   const handleCLassAdmission =async (e) => {
     e.preventDefault();
-
-    try {
-      const classAdmission =await addDoc(collection(db, "AdmissionForm"), classObj)
-      .then((res) => {
-        console.log(res)
-        alert('Admission Add in list')
-        navigate('/class/classList')
-      })
-    } catch (error) {
-      console.log('error', error)
-    }
+    
+  if(firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || radio === '' || qualification.trim === '' || birth === 0 || phone === 0){
+    alert('Please fill all the fields')
+   }
+   else{
+     try {
+       const classAdmission =await addDoc(collection(db, "AdmissionForm"), classObj)
+       .then((res) => {
+         console.log(res)
+         alert('Admission Add in list')
+         navigate('/class/classList')
+       })
+     } catch (error) {
+       console.log('error', error)
+     }
+   }
   }
 
 
