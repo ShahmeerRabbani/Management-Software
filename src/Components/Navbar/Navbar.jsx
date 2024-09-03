@@ -22,7 +22,7 @@ const Navbar = () => {
     <div className={styles.Navbar}>
       <div className={styles.logo}>
         <IoSchool size={26}/>
-        <span>Learning Managememnt System</span>
+        <span>Learning Management System</span>
       </div>
       <div className={styles.logOut}>
       <Avatar sx={{color: '#000', fontWeight: 700, fontSize: 22}} title='log out' onClick={()=> navigate('/')}>{letter}</Avatar>
