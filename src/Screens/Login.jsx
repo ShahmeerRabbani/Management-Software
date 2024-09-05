@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import LogoImg from '../assets/images/logo.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../Components/FirebaseConfig/FirebaseConfig'
+import { auth, db } from '../Components/FirebaseConfig/FirebaseConfig'
+import { doc, getDoc } from 'firebase/firestore'
 
 const LoginPage = () => {
 
@@ -11,9 +12,13 @@ const LoginPage = () => {
 
   const navigate = useNavigate('')
 
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-    .then((res)=> {
+  const handleLogin =async () => {
+    await signInWithEmailAndPassword(auth, email, password)
+    .then(async(userCredential)=> {
+      const uID = userCredential.user.uid;
+      const getSingleData =await getDoc(doc(db, 'userName', uID))
+      localStorage.setItem('userInfo', JSON.stringify(getSingleData.data()))
+      localStorage.setItem('userId', uID)
       alert('Login Successfully..')
       navigate('/student/studentList', {replace: true})
     })

@@ -27,6 +27,8 @@ import AdmissionForm from './Screens/Admission/AdmissionForm'
 
 import ExamSchedule from './Screens/Exam/ExamSchedule'
 import ExamResult from './Screens/Exam/ExamResult'
+import AuthRoute from './Components/Routes/AuthRoute'
+import HomeRoute from './Components/Routes/HomeRoute'
 
 
 
@@ -34,9 +36,12 @@ import ExamResult from './Screens/Exam/ExamResult'
 const App = () => {
   return (
     <Routes>
+      <Route element={<AuthRoute/>}>
       <Route path='/' element={<LoginPage/>}/>
       <Route path='/signUp' element={<SignUpPage/>}/>
+      </Route>
 
+      <Route element={<HomeRoute/>}>
       <Route path='/student/studentList' element={<StudentList/>}/>
       <Route path='/student/studentRegistration' element={<StudentRegistration />}/>
 
@@ -60,6 +65,7 @@ const App = () => {
 
       <Route path='/exam/examSchedule' element={<ExamSchedule/>}/>
       <Route path='/exam/examResult' element={<ExamResult/>}/>
+      </Route>
     </Routes>
   )
 }

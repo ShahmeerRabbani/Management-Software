@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import LogoImg from '../assets/images/logo.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 import {auth, db} from '../Components/FirebaseConfig/FirebaseConfig'
 
 const SignUpPage = () => {
@@ -21,7 +21,8 @@ const SignUpPage = () => {
   }
   const userInfo = {
     firstName,
-    lastName
+    lastName,
+    email
   }
 
   const handleSubmitUser =async () => {
@@ -31,23 +32,15 @@ const SignUpPage = () => {
         alert('Please Fill All input')
        }
        else{
-        try {
-          const userNames =await addDoc(collection(db, 'userName'),userInfo)
-          .then((response) => console.log("user add in data base", response))
-          .catch((error) => console.log('error in database', error))
-          localStorage.setItem('user', JSON.stringify(userInfo));
-         } catch (error) {
-          console.log('catch error')
-         }
-
-
          //  Authentication
-           createUserWithEmailAndPassword(auth, email, password)
-           .then((res) => {
-            alert('Sign Up Successfully..')
-            navigate('/')
-           })
-           .catch((err) => console.log('error', err))
+         createUserWithEmailAndPassword(auth, email, password)
+         .then(async(userCredential) => {
+          const uID = userCredential.user.uid;
+           const userNames =await setDoc(doc(db, 'userName', uID),userInfo)
+           alert('Sign Up Successfully..')
+           navigate('/')
+          })
+          .catch((err) => console.log('error', err))
        }
   }
 
